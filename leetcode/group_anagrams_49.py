@@ -46,3 +46,22 @@ class Solution:
 s = Solution()
 strs = ["eat","tea","tan","ate","nat","bat"]
 s.groupAnagrams(strs)
+
+# Efficient way
+
+class Solution1:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        mp = {}
+        ans = []
+        for s in strs:
+            sorted_str = ''.join(sorted(s))
+            if sorted_str in mp:
+                ans[mp[sorted_str]].append(s)
+            else:
+                mp[sorted_str] = len(ans)
+                ans.append([s])    
+        return ans
+     
+s1 = Solution1()
+strs = ["eat","tea","tan","ate","nat","bat"]
+s1.groupAnagrams(strs)
